@@ -16,5 +16,19 @@ How is that being tested?
 
 ## Your Team's Answers
 
-1. Your answer here...
-1. Another answer...
+1. In the 'UserControler' constructor, it calls the database using mongo syntax getting and filtering users. It also adds functionality for adding new user. 
+    In the 'Server' constructor, it handles request and responses. It also has 'mongoClient' and 'mongoDatabase'. 
+2. The 'getUser' retrieves the id by comparing the collection of id's to the id we pass it. 
+
+3. To retrieve all the users with a given age, it calls 'getUser' and it checks the 'targetAge' and returns the user with the target age.
+    FilterDoc is a specific filter for mongo that will filter the document by what we want. 
+
+4. The 'Document' are a generalized file format that mongo uses to store data. the document object can have data that is incomplete or can have data with a new field (added later) that old data does not have. 
+we are using them in a similar way as a Json object. we are using mongo objects because it is more flexible then other data objects.
+
+5. The 'UserControllerSpec.clearAndPopulateDb' populates a mongo database with testUsers. It creates a new id for a specific user. 
+
+6. It is getting users with a specific name set, users by a specific age, and users by a specific mongoId. It checks if these criteria are matching. 
+
+7. The 'UserRequestHandler' gets a new user and calls 'userController' to give it the right criteria for a user. When 'userController' is done, 'userRequestHandler' returns the new user.
+ 
