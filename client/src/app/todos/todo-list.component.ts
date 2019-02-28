@@ -17,7 +17,7 @@ export class TodoListComponent implements OnInit {
   public filteredTodos: Todo[];
 
   public todoOwner: string;
-  public todoStatus: string;
+  public todoStatus: boolean;
   public todoBody: string;
   public todoCategory: string;
 
@@ -29,7 +29,7 @@ private highlightedID: string = '';
   // We can call upon the service for interacting
   // with the server.
 
-  constructor(private todoListService: TodoListService) {
+  constructor(private todoListService: TodoListService, public dialog: MatDialog) {
 
   }
 
@@ -38,7 +38,7 @@ private highlightedID: string = '';
   }
 
   openDialog(): void {
-    const newTodo: Todo = {_id: '', owner: '', status: boolean, body: '', category: ''};
+    const newTodo: Todo = {id: '', owner: '', status: true, body: '', category: ''};
     const dialogRef = this.dialog.open(AddTodoComponent, {
       width: '500px',
       data: {todo: newTodo}
@@ -61,7 +61,7 @@ private highlightedID: string = '';
     });
   }
 
-  public filterTodos(searchOwner: string, searchStatus: string, searchBody: string, searchCategory: string): Todo[] {
+  public filterTodos(searchOwner: string, searchStatus: boolean, searchBody: string, searchCategory: string): Todo[] {
 
     this.filteredTodos = this.todos;
 
@@ -78,10 +78,10 @@ private highlightedID: string = '';
     // Filter by status
     if (searchStatus != null) {
       this.filteredTodos = this.filteredTodos.filter(todo => {
-        return function (status) {
-          if(searchStatus==="complete")return true;
-          if(searchStatus==="incomplete")return false;
-        }(todo.status)==todo.status;
+        return function (searchStatus) {
+          if(searchStatus===true)return 'complete';
+          if(searchStatus===false)return 'incomplete';
+        }(todo.status);
       });
     }
 
@@ -128,6 +128,18 @@ private highlightedID: string = '';
         console.log(err);
       });
     return todos;
+  }
+
+  loadService(): void {
+    this.todoListService.getTodos(this.todoCategory).subscribe(
+      todos => {
+        this.todos = todos;
+        this.filteredTodos = this.todos;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 
