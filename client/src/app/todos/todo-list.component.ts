@@ -32,6 +32,35 @@ private highlightedID: string = '';
   constructor(private todoListService: TodoListService) {
 
   }
+
+  isHighlighted(todo: Todo): boolean {
+    return todo.id['$oid'] === this.highlightedID;
+  }
+
+  openDialog(): void {
+    const newTodo: Todo = {_id: '', owner: '', status: boolean, body: '', category: ''};
+    const dialogRef = this.dialog.open(AddTodoComponent, {
+      width: '500px',
+      data: {todo: newTodo}
+    });
+
+    dialogRef.afterClosed().subscribe(newTodo => {
+      if (newTodo != null) {
+        this.todoListService.addNewTodo(newTodo).subscribe(
+          result => {
+            this.highlightedID = result;
+            this.refreshTodos();
+          },
+          err => {
+            // This should probably be turned into some sort of meaningful response.
+            console.log('There was an error adding the todo.');
+            console.log('The newTodo or dialogResult was ' + newTodo);
+            console.log('The error was ' + JSON.stringify(err));
+          });
+      }
+    });
+  }
+
   public filterTodos(searchOwner: string, searchStatus: string, searchBody: string, searchCategory: string): Todo[] {
 
     this.filteredTodos = this.todos;
