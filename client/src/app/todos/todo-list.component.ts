@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {TodoListService} from './todo-list.service';
 import {Todo} from './todo';
 import {Observable} from 'rxjs/Observable';
-
+import {MatDialog} from '@angular/material';
+import {AddTodoComponent} from './add-todo.component';
 
 @Component({
   selector: 'app-todo-list-component',
   templateUrl: 'todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
-  providers: []
 })
 
 export class TodoListComponent implements OnInit {
@@ -21,6 +21,7 @@ export class TodoListComponent implements OnInit {
   public todoBody: string;
   public todoCategory: string;
 
+private highlightedID: string = '';
 
   // Inject the TodoListService into this component.
   // That's what happens in the following constructor.
