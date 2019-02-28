@@ -39,7 +39,7 @@ export class UserListComponent implements OnInit {
     const dialogRef = this.dialog.open(AddUserComponent, {
       width: '500px',
       data: {user: newUser}
-    });
+    });////intelij might be mad at this but its ok. need to build first. Nic said it would work.
 
     dialogRef.afterClosed().subscribe(newUser => {
       if (newUser != null) {
