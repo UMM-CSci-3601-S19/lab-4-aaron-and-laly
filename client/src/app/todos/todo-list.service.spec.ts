@@ -58,7 +58,7 @@ describe('Todo list service: ', () => {
       todos => expect(todos).toBe(testTodos)
     );
     // Specify that (exactly) one request will be made to the specified URL.
-    const req = httpTestingController.expectOne(todoListService.todoUrl);
+    const req = httpTestingController.expectOne(todoListService.baseUrl);
     // Check that the request made to that URL was a GET request.
     expect(req.request.method).toEqual('GET');
     // Specify the content of the response to that request. This
@@ -74,7 +74,7 @@ describe('Todo list service: ', () => {
       todo => expect(todo).toBe(targetTodo)
     );
 
-    const expectedUrl: string = todoListService.todoUrl + '/' + targetId;
+    const expectedUrl: string = todoListService.baseUrl + '/' + targetId;
     const req = httpTestingController.expectOne(expectedUrl);
     expect(req.request.method).toEqual('GET');
     req.flush(targetTodo);

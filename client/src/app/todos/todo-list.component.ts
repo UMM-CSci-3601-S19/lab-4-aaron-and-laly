@@ -78,10 +78,10 @@ private highlightedID: string = '';
     // Filter by status
     if (searchStatus != null) {
       this.filteredTodos = this.filteredTodos.filter(todo => {
-        return function (searchStatus) {
-          if(searchStatus===true)return 'complete';
-          if(searchStatus===false)return 'incomplete';
-        }(todo.status);
+        // return function (searchStatus){
+        //   if(searchStatus===true)return true;
+        //   if(searchStatus===false)return false;
+        // }(todo.status);
       });
     }
 
