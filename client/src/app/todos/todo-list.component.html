@@ -26,10 +26,10 @@
         </mat-form-field>
 
         <mat-accordion *ngIf="todos; else todosError">
-          <mat-expansion-panel #elem [id]="todo.id" *ngFor="let todo of this.filterTodos(todoOwner, todoStatus, todoBody, todoCategory)">
+          <mat-expansion-panel #elem [id]="todo._id" *ngFor="let todo of this.filterTodos(todoOwner, todoStatus, todoBody, todoCategory)">
             <mat-expansion-panel-header>
 
-              <mat-panel-title matTooltip="id: {{todo.id}}">{{todo.owner}} </mat-panel-title>
+              <mat-panel-title matTooltip="id: {{todo._id}}">{{todo.owner}} </mat-panel-title>
 
             </mat-expansion-panel-header>
             <mat-panel-description>Has a status of '{{todo.status}}'</mat-panel-description>
