@@ -82,7 +82,7 @@ private highlightedID: string = '';
         //   if(searchStatus===true)return true;
         //   if(searchStatus===false)return false;
         // }(todo.status);
-      });
+      });/////////////////////////////////////////////////////////////////////////busted, logic needs to be worked out.
     }
 
 

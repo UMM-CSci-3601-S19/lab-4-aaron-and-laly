@@ -68,7 +68,7 @@ export class TodoListService {
   addNewTodo(newTodo: Todo): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
-        // We're sending JSON
+        // We're sending JSONgetUserJSON
         'Content-Type': 'application/json'
       }),
       // But we're getting a simple (text) string in response
