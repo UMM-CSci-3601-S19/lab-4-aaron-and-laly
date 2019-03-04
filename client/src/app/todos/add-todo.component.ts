@@ -1,10 +1,11 @@
+///<reference path="../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Todo} from './todo';
 import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
 import {OwnerValidator} from "./owner.validator";
 
-@Component({
+@Component({ // generated something and it worked ctrl+b to see what it generated
   selector: 'add-todo.component',
   templateUrl: 'add-todo.component.html',
 })
@@ -27,16 +28,20 @@ export class AddTodoComponent implements OnInit {
       {type: 'existingOwner', message: 'Owner has already been taken'}
     ],
 
-    'age': [
-      {type: 'pattern', message: 'Age must be a number'},
-      {type: 'min', message: 'Age must be at least 15'},
-      {type: 'max', message: 'Age may not be greater than 200'},
-      {type: 'required', message: 'Age is required'}
+    'category': [
+      {type: 'pattern', message: 'Category must be an activity'},
+      {type: 'required', message: 'Category is required'}
     ],
 
-    'email': [
-      {type: 'email', message: 'Email must be formatted properly'}
-    ]
+    'status': [
+      {type: 'pattern', message: 'Status must be Complete or Incomplete'},
+      {type: 'required', message: 'Status is required'}
+    ],
+
+    'body':[
+      {type: 'required', message: 'Body is required'},
+      {type: 'pattern', message: 'Pattern contains letters and numbers'}
+    ],
   };
 
   createForms() {
@@ -53,19 +58,19 @@ export class AddTodoComponent implements OnInit {
       ])),
 
       // Since this is for a company, we need workers to be old enough to work, and probably not older than 200.
-      age: new FormControl('age', Validators.compose([
+      category: new FormControl('category', Validators.compose([
         Validators.pattern('^[0-9]+[0-9]?'),
         Validators.min(15),
         Validators.max(200),
         Validators.required
       ])),
 
-      // We don't care much about what is in the company field, so we just add it here as part of the form
-      // without any particular validation.
-      company: new FormControl('company'),
+      status: new FormControl('status', Validators.compose([
+        Validators.pattern('Complete, Incomplete '),
+        Validators.required
+      ])),
 
-      // We don't need a special validator just for our app here, but there is a default one for email.
-      email: new FormControl('email', Validators.email)
+      body: new FormControl('body'),
     })
 
   }
