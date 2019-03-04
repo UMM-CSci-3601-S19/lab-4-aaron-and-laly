@@ -64,6 +64,7 @@ private highlightedID: string = '';
   public filterTodos(searchOwner: string, searchStatus: boolean, searchBody: string, searchCategory: string): Todo[] {
 
     this.filteredTodos = this.todos;
+    console.log("SERVER LOADS");
 
     // Filter by owner
 
@@ -145,5 +146,6 @@ private highlightedID: string = '';
 
   ngOnInit(): void {
     this.refreshTodos();
+    this.loadService();
   }
 }
