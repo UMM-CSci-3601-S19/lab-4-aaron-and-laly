@@ -5,32 +5,32 @@
 <div  id="body" layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
     <mat-card>
-      <mat-card-title id="todo-list-title">Todos</mat-card-title>
+      <mat-card-title id="todo-list-title">[_Todos_]</mat-card-title>
       <mat-divider></mat-divider>
-      <mat-card-content id="cardcont">
-        <mat-form-field id="owner">
-          <input matInput id="todoOwner" #input placeholder="Filter by owner"
+      <mat-card-content id="cardCont">
+        <mat-form-field id="ownerTodo">
+          <input matInput id="todoOwnerFillinField" #input placeholder="Filter by owner"
                  (input)="todoOwner = $event.target.value">
         </mat-form-field>
-        <mat-form-field id="status">
-          <input matInput id="todoStatus" #input placeholder="Filter by status"
+        <mat-form-field id="statusTodo">
+          <input matInput id="todoStatusFillinField" #input placeholder="Filter by status"
                  (input)="todoStatus = $event.target.value">
         </mat-form-field>
         <mat-form-field id="bodyTodo">
-          <input matInput id="todoBody" #input placeholder="Filter by body"
+          <input matInput id="todoBodyFillinField" #input placeholder="Filter by body"
                  (input)="todoBody = $event.target.value">
         </mat-form-field>
-        <mat-form-field id="category">
-          <input matInput id="todoCategory" #input placeholder="Filter by category"
+        <mat-form-field id="categoryTodo">
+          <input matInput id="todoCategoryFillinField" #input placeholder="Filter by category"
                  (input)="todoCategory = $event.target.value">
         </mat-form-field>
 
-        <div id="todoCard" *ngIf="todos; else todosError">
+        <div id="todoCardCell" *ngIf="todos; else todosError">
           <mat-card #elem class="todo" [id]="todo.id" *ngFor="let todo of this.filterTodos(todoOwner, todoStatus, todoBody, todoCategory)">
 
-              <mat-card-title id="cardTitle" matTooltip="id: {{todo.id}}">{{todo.owner}} </mat-card-title>
+              <mat-card-title id="cardTitle" matTooltip="id: {{todo.id}}">[ {{todo.owner}} ] </mat-card-title>
 
-            <mat-card-content class="todoCardCon">Is {{todo.status}} </mat-card-content>
+            <mat-card-content class="todoCardCon">[_{{todo.status}}_] </mat-card-content>
             <mat-card-content class="todoCardCon">Category: {{todo.category}} </mat-card-content>
             <mat-card-content class="todoCardCon">Memo: {{todo.body}} </mat-card-content>
     </mat-card>

@@ -11,7 +11,8 @@
   background-color: black;
   color: #00FF00;
   font-family: monospace;
-  margin: 0;
+  margin: 0%;
+  padding-bottom: 10px;
 }
 
 #addNewTodo{
@@ -20,23 +21,26 @@
   font-family: monospace;
 }
 
-#todoCard {
+#todoCardCell {
   background-color: gray;
-  width: 100%;
   padding-top: 3px;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
-
 .todo {
-  flex-direction: column;
+  flex-direction: row;
+  background-color: black;
 }
 
 .todoCardCon {
   color: #00ff00;
   background-color: black;
   margin: 0;
+  flex-direction: column;
+  display: flex;
+  width: 250px;
 
 }
 
@@ -46,15 +50,15 @@
   margin: 0;
 }
 
-#cardcont {
+#cardCont {
   background-color: black;
 }
 
-#owner {
+#ownerTodo {
   background: black;
   margin-bottom: 15px;
 }
-#status {
+#statusTodo {
   background: black;
   margin-bottom: 15px;
 }
@@ -64,23 +68,23 @@
   margin-bottom: 15px;
 }
 
-#category {
+#categoryTodo {
   background: black;
   margin-bottom: 15px;
 }
 
-#todoOwner {
-  background-color: white;
+#todoOwnerFillinField {
+  background-color: grey;
 }
 
-#todoStatus {
-  background-color: white;
+#todoStatusFillinField {
+  background-color: grey;
 }
 
-#todoBody {
-  background-color: white;
+#todoBodyFillinField {
+  background-color: grey;
 }
 
-#todoCategory {
-  background-color: white;
+#todoCategoryFillinField {
+  background-color: grey;
 }
