@@ -73,9 +73,7 @@ private highlightedID: string = '';
       this.filteredTodos = this.filteredTodos.filter(todo => {
         return !searchOwner || todo.owner.toLowerCase().indexOf(searchOwner) !== -1;
       });
-      console.log('Gets Owner');
     }
-    console.log('Gets Owner');
 
     // Filter by status
     if (searchStatus != null) {

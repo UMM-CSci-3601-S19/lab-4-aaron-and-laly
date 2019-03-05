@@ -11,8 +11,8 @@ public class TodoRequestHandler {
 
   private final TodoController todoController;
 
-  public TodoRequestHandler(TodoController todoController) {this.todoController = todoController;
-  }
+
+  public TodoRequestHandler(TodoController todoController) {this.todoController = todoController;}
 
   /**
    * Method called from Server when the 'api/todos/:id' endpoint is received.
@@ -24,7 +24,7 @@ public class TodoRequestHandler {
    */
   public String getTodoJSON(Request req, Response res) {
     res.type("application/json");
-    String id = req.params("id");
+    String id = req.params("_id");
     String todo;
     try {
       todo = todoController.getTodo(id);
@@ -78,11 +78,20 @@ public class TodoRequestHandler {
     Document newTodo = Document.parse(req.body());
 
     String owner = newTodo.getString("owner");
-    boolean status = newTodo.getBoolean("status");
+    String status = newTodo.getString("status");
     String category = newTodo.getString("category");
     String body = newTodo.getString("body");
 
+    boolean statusBool= false;
+
+    if(status == "complete"){
+    statusBool = true;
+    }else if (status == "incomplete"){
+    statusBool = false;
+    }
+
+
     System.err.println("Adding new todo [owner=" + owner + ", status=" + status + " category=" + category + " body=" + body + ']');
-    return todoController.addNewTodo(owner, status, category, body);
+    return todoController.addNewTodo(owner, statusBool, category, body);
   }
 }

@@ -26,9 +26,7 @@ public class TodoController {
    *
    * @param database the database containing todo data
    */
-  public TodoController(MongoDatabase database) {
-    todoCollection = database.getCollection("todos");
-  }
+  public TodoController(MongoDatabase database) {todoCollection = database.getCollection("todos");}
 
   /**
    * Helper method that gets a single todo specified by the `id`
