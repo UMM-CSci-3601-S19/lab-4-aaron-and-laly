@@ -10,12 +10,16 @@ import {environment} from '../../environments/environment';
 export class TodoListService {
   readonly baseUrl: string = environment.API_URL + 'todos';
   private todoUrl: string = this.baseUrl;
-
+  private filterPlayVideoGamesURL: string = this.todoUrl + '?status=true&category=video%20games';
 
   constructor(private http: HttpClient) {
   }
 
 
+  filterPVG(videogame: string){
+    this.filterByCategory(videogame);
+    return this.http.get<Todo[]>(this.filterPlayVideoGamesURL);
+  }
 
   getTodos(todoCategory?: string): Observable<Todo[]> {
     this.filterByCategory(todoCategory);

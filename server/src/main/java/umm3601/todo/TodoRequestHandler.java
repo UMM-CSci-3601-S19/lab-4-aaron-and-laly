@@ -82,7 +82,7 @@ public class TodoRequestHandler {
     String category = newTodo.getString("category");
     String body = newTodo.getString("body");
 
-    boolean statusBool= Boolean.parseBoolean(status);
+    Boolean statusBool= Boolean.parseBoolean(status);
 
     if(status == "complete"){
     statusBool = true;

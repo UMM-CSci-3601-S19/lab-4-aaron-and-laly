@@ -10,7 +10,7 @@ export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'users', component: UserListComponent},
   {path: 'todos', component: TodoListComponent},
-  // {path: 'filter-complete', component: filterCompleteTodos}
+  {path: 'filterPVG', component: VideoGameListComponent}
 ];
 
 export const Routing: ModuleWithProviders = RouterModule.forRoot(routes);
