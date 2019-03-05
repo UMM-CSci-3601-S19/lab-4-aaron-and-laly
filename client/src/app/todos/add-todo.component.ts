@@ -51,22 +51,19 @@ export class AddTodoComponent implements OnInit {
       // We allow alphanumeric input and limit the length for owner.
       owner: new FormControl('owner', Validators.compose([
         OwnerValidator.validOwner,
-        Validators.minLength(2),
-        Validators.maxLength(25),
         Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?'),
         Validators.required
       ])),
 
       // Since this is for a company, we need workers to be old enough to work, and probably not older than 200.
       category: new FormControl('category', Validators.compose([
-        Validators.pattern('^[0-9]+[0-9]?'),
-        Validators.min(15),
-        Validators.max(200),
+        Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?'),
+        Validators.max(80),
         Validators.required
       ])),
 
       status: new FormControl('status', Validators.compose([
-        Validators.pattern('Complete, Incomplete '),
+        Validators.pattern('[Complete, Incomplete, complete, incomplete]+'),
         Validators.required
       ])),
 

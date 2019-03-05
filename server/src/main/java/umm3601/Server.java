@@ -14,7 +14,7 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Server {
   private static final String userDatabaseName = "dev";
-  private static final String todoDatabaseName = "another_dev_cause_idk"; //// don't know if this is looking for a specific name or if it names the database ----> ask Nic
+  private static final String todoDatabaseName = "dev";
 
   private static final int serverPort = 4567;
 
