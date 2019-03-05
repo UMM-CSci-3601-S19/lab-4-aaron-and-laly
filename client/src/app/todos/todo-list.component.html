@@ -1,43 +1,41 @@
-<div>
-  <button id="addNewTodo" mat-raised-button (click)="openDialog()">Add New Todo</button>
+<div id="top">
+  <button id="addNewTodo" mat-raised-button (click)="openDialog()">[_Add New Todo_]</button>
 </div>
 
-<div layout-gt-sm="row">
+<div  id="body" layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
     <mat-card>
       <mat-card-title id="todo-list-title">Todos</mat-card-title>
       <mat-divider></mat-divider>
-      <mat-card-content>
-        <mat-form-field>
-          <input matInput id="todoOwner" #input type="text" placeholder="Filter by owner"
+      <mat-card-content id="cardcont">
+        <mat-form-field id="owner">
+          <input matInput id="todoOwner" #input placeholder="Filter by owner"
                  (input)="todoOwner = $event.target.value">
         </mat-form-field>
-        <mat-form-field>
-          <input matInput id="todoStatus" #input type="text" placeholder="Filter by status"
+        <mat-form-field id="status">
+          <input matInput id="todoStatus" #input placeholder="Filter by status"
                  (input)="todoStatus = $event.target.value">
         </mat-form-field>
-        <mat-form-field>
-          <input matInput id="todoBody" #input type="text" placeholder="Filter by body"
+        <mat-form-field id="bodyTodo">
+          <input matInput id="todoBody" #input placeholder="Filter by body"
                  (input)="todoBody = $event.target.value">
         </mat-form-field>
-        <mat-form-field>
-          <input matInput id="todoCategory" #input type="text" placeholder="Filter by category"
+        <mat-form-field id="category">
+          <input matInput id="todoCategory" #input placeholder="Filter by category"
                  (input)="todoCategory = $event.target.value">
         </mat-form-field>
 
-        <mat-accordion *ngIf="todos; else todosError">
-          <mat-expansion-panel #elem [id]="todo._id" *ngFor="let todo of this.filterTodos(todoOwner, todoStatus, todoBody, todoCategory)">
-            <mat-expansion-panel-header>
+        <div id="todoCard" *ngIf="todos; else todosError">
+          <mat-card #elem class="todo" [id]="todo.id" *ngFor="let todo of this.filterTodos(todoOwner, todoStatus, todoBody, todoCategory)">
 
-              <mat-panel-title matTooltip="id: {{todo._id}}">{{todo.owner}} </mat-panel-title>
+              <mat-card-title id="cardTitle" matTooltip="id: {{todo.id}}">{{todo.owner}} </mat-card-title>
 
-            </mat-expansion-panel-header>
-            <mat-panel-description>Is {{todo.status}}</mat-panel-description>
-            <mat-panel-description>Category: {{todo.category}}</mat-panel-description>
-            <mat-panel-description>Memo: {{todo.body}} </mat-panel-description>
-          </mat-expansion-panel>
-        </mat-accordion>
-        <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
+            <mat-card-content class="todoCardCon">Is {{todo.status}} </mat-card-content>
+            <mat-card-content class="todoCardCon">Category: {{todo.category}} </mat-card-content>
+            <mat-card-content class="todoCardCon">Memo: {{todo.body}} </mat-card-content>
+    </mat-card>
+        </div>
+
         <ng-template #todosError>
           <mat-error>
             There was a problem loading the todos. Possibly the server is down or perhaps there are network

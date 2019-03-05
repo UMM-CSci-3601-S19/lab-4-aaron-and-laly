@@ -1,0 +1,86 @@
+#body {
+  background-color: black;
+}
+
+#top {
+  background-color: black;
+}
+
+
+#todo-list-title {
+  background-color: black;
+  color: #00FF00;
+  font-family: monospace;
+  margin: 0;
+}
+
+#addNewTodo{
+  background-color: black;
+  color: #00FF00;
+  font-family: monospace;
+}
+
+#todoCard {
+  background-color: gray;
+  width: 100%;
+  padding-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.todo {
+  flex-direction: column;
+}
+
+.todoCardCon {
+  color: #00ff00;
+  background-color: black;
+  margin: 0;
+
+}
+
+#cardTitle {
+  background-color: black;
+  color: #00ff00;
+  margin: 0;
+}
+
+#cardcont {
+  background-color: black;
+}
+
+#owner {
+  background: black;
+  margin-bottom: 15px;
+}
+#status {
+  background: black;
+  margin-bottom: 15px;
+}
+
+#bodyTodo {
+  background: black;
+  margin-bottom: 15px;
+}
+
+#category {
+  background: black;
+  margin-bottom: 15px;
+}
+
+#todoOwner {
+  background-color: white;
+}
+
+#todoStatus {
+  background-color: white;
+}
+
+#todoBody {
+  background-color: white;
+}
+
+#todoCategory {
+  background-color: white;
+}
