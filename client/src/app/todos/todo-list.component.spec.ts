@@ -96,14 +96,14 @@ describe('Todo list', () => {
 
   it('todo list filters by status', () => {
     expect(todoList.filteredTodos.length).toBe(3);
-    todoList.todoStatus = true;
+    todoList.todoStatus = 'complete';
     const a: Observable<Todo[]> = todoList.refreshTodos();
     a.do(x => Observable.of(x))
-      .subscribe(x => expect(todoList.filteredTodos.length).toBe(0));// Filter not returning anything. expects 0 to make test pass. Supposed to be 1.
-    todoList.todoStatus = false;
+      .subscribe(x => expect(todoList.filteredTodos.length).toBe(1));
+    todoList.todoStatus = 'incomplete';
     const b: Observable<Todo[]> = todoList.refreshTodos();
     b.do(x => Observable.of(x))
-      .subscribe(x => expect(todoList.filteredTodos.length).toBe(0));// Filter not returning anything. expects 0 to make test pass. Supposed to be 2.
+      .subscribe(x => expect(todoList.filteredTodos.length).toBe(2));
   });
 
 

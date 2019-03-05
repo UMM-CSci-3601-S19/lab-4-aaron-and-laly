@@ -54,8 +54,6 @@ export class AddTodoComponent implements OnInit {
         Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?'),
         Validators.required
       ])),
-
-      // Since this is for a company, we need workers to be old enough to work, and probably not older than 200.
       category: new FormControl('category', Validators.compose([
         Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?'),
         Validators.max(80),
