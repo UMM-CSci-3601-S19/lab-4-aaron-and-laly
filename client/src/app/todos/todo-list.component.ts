@@ -17,7 +17,7 @@ export class TodoListComponent implements OnInit {
   public filteredTodos: Todo[];
 
   public todoOwner: string;
-  public todoStatus: boolean;
+  public todoStatus: string;
   public todoBody: string;
   public todoCategory: string;
 
@@ -61,7 +61,7 @@ private highlightedID: string = '';
     });
   }
 
-  public filterTodos(searchOwner: string, searchStatus: boolean, searchBody: string, searchCategory: string): Todo[] {
+  public filterTodos(searchOwner: string, searchStatus: string, searchBody: string, searchCategory: string): Todo[] {
 
     this.filteredTodos = this.todos;
     console.log("SERVER LOADS");
@@ -79,12 +79,16 @@ private highlightedID: string = '';
 
     // Filter by status
     if (searchStatus != null) {
+      searchStatus = searchStatus.toLocaleLowerCase();
       this.filteredTodos = this.filteredTodos.filter(todo => {
-        // return function (searchStatus){
-        //   if(searchStatus===true)return true;
-        //   if(searchStatus===false)return false;
-        // }(todo.status);
-      });/////////////////////////////////////////////////////////////////////////busted, logic needs to be worked out.
+        if (searchStatus == 'complete') {
+          return !searchStatus || todo.status == true;
+        }
+        if (searchStatus == 'incomplete') {
+          return !searchStatus || todo.status == false;
+        }
+
+      });
     }
 
 
@@ -114,11 +118,7 @@ private highlightedID: string = '';
    *
    */
   refreshTodos(): Observable<Todo[]> {
-    // Get Todos returns an Observable, basically a "promise" that
-    // we will get the data from the server.
-    //
-    // Subscribe waits until the data is fully downloaded, then
-    // performs an action on it (the first lambda)
+
 
     const todos: Observable<Todo[]> = this.todoListService.getTodos();
     todos.subscribe(
