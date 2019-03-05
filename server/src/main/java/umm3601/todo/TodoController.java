@@ -66,7 +66,10 @@ public class TodoController {
     Document filterDoc = new Document();
 
     if (queryParams.containsKey("owner")) {
-      int targetOwner = Integer.parseInt(queryParams.get("owner")[0]);
+      String targetOwner = (queryParams.get("owner"))[0];
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetOwner);
+      contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("owner", targetOwner);
     }
 
@@ -77,6 +80,21 @@ public class TodoController {
       contentRegQuery.append("$options", "i");
       filterDoc = filterDoc.append("category", contentRegQuery);
     }
+    if (queryParams.containsKey("body")) {
+      String targetBody = (queryParams.get("body"))[0];
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetBody);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("body", targetBody);
+    }
+
+    if (queryParams.containsKey("status")) {
+      String targetStatus = (queryParams.get("status"))[0];
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetStatus);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("status", targetStatus);
+    }
 
     //FindIterable comes from mongo, Document comes from Gson
     FindIterable<Document> matchingTodos = todoCollection.find(filterDoc);
@@ -84,11 +102,6 @@ public class TodoController {
     return serializeIterable(matchingTodos);
   }
 
-  /*
-   * Take an iterable collection of documents, turn each into JSON string
-   * using `document.toJson`, and then join those strings into a single
-   * string representing an array of JSON objects.
-   */
   private String serializeIterable(Iterable<Document> documents) {
     return StreamSupport.stream(documents.spliterator(), false)
       .map(Document::toJson)
@@ -116,7 +129,7 @@ public class TodoController {
     try {
       todoCollection.insertOne(newTodo);
       ObjectId id = newTodo.getObjectId("id");
-      System.err.println("Successfully added new todo [_id=" + id + ", owner=" + owner + ", status=" + status + " category=" + category + " body=" + body + ']');
+      System.err.println("Successfully added new todo [_id=" + id + ", owner=" + owner + ", status=" + status + ", category=" + category + " body=" + body + ']');
       return id.toHexString();
     } catch (MongoException me) {
       me.printStackTrace();
